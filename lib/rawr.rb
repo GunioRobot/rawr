@@ -136,7 +136,7 @@ namespace :rawr do
                                       CONFIG.source_exclude_filter,
                                       CONFIG.target_jvm_version)
     end
-  end 
+  end
 
   COPIED_SOURCE_FILES = generate_copy_tasks_for(CONFIG.ruby_source_files_to_copy, "source")
   COPIED_NON_SOURCE_FILES = generate_copy_tasks_for(CONFIG.non_source_file_list, "non-source")
@@ -183,15 +183,15 @@ namespace :rawr do
         path = directory.to_s.strip.empty? ? filename  : "#{directory}/#{filename}"
         processed_path = directory.to_s.strip.empty? ? "#{CONFIG.mirah_source_root}/#{processed_file}" : "#{CONFIG.mirah_source_root}/#{directory}/#{processed_file}"
         sh "mirahc --jvm #{CONFIG.target_jvm_version} --cd #{CONFIG.mirah_source_root} #{path}"
-        
+
         # Decided that since the result is a Java class file, then it should go with any other
         # compiled Java results
 
-        copy_to_file = target_file  
+        copy_to_file = target_file
         copy_to_dir = File.dirname target_file
-        
+
         FileUtils.mkdir_p(copy_to_dir) unless File.exist? copy_to_dir
-        FileUtils.mv processed_path, copy_to_file 
+        FileUtils.mv processed_path, copy_to_file
       end
     end
   end

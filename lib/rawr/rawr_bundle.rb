@@ -11,7 +11,7 @@ namespace "rawr:bundle" do
     require 'rawr/exe_bundler'
     Rawr::ExeBundler.new.deploy Rawr::Configuration.current_config
   end
-  
+
   desc "Bundles the jar from rawr:jar into a Java Web Start application (.jnlp)"
   task :web => ["rawr:jar"] do
     require 'rawr/web_bundler'

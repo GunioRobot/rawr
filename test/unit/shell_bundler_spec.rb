@@ -25,7 +25,7 @@ describe "Rawr::ShellBundler" do
       end
       File.should be_exist(File.join(@shell_dir, 'spec_project.sh'))
     end
-    
+
     it "creates a .sh file with +x permissions" do
       FileUtils.cd @shell_dir do
         @bundler.create_shell_file 'spec_project'
@@ -33,7 +33,7 @@ describe "Rawr::ShellBundler" do
       File.should be_executable(File.join(@shell_dir, 'spec_project.sh'))
     end
   end
-  
+
   describe ".sh invocation" do
     it "runs the app using java -jar"
     it "passes along the classpath"
@@ -46,6 +46,6 @@ describe "Rawr::ShellBundler" do
     it "Verifies the presense of Java"
     it "Verifies the Java version"
   end
-  
-  
+
+
 end

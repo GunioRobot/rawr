@@ -5,7 +5,7 @@ module Rawr
   class JRubyBatchCompiler
     def compile_dirs(src_dirs, dest_dir, options={})
       puts "   compile_dirs has src_dirs = #{src_dirs.inspect}"
-      
+
       #TODO: Allow for copy-only and some other options
       ruby_globs = glob_ruby_files(src_dirs, options[:exclude])
 
@@ -13,7 +13,7 @@ module Rawr
         puts  "   ruby_globs.each has glob_data = #{glob_data.inspect}"
         files     = glob_data.files
         directory = glob_data.directory
-        
+
         next if files.empty? # Otherwise jrubyc breaks since we cannot compile nothing
 
         file_set = files.map {|file| "#{directory}/#{file}"}

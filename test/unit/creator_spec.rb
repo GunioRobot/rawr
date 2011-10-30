@@ -5,12 +5,12 @@ require 'fileutils'
 
 describe Rawr::Creator do
   include CustomFileMatchers
-  
+
   before :each do
     @creator = Rawr::Creator
     @config = OpenStruct.new
   end
-  
+
   it "creates a run config file" do
     begin
       @config.package_dir         = '.'
@@ -28,7 +28,7 @@ describe Rawr::Creator do
       FileUtils.rm_rf 'run_configuration'
     end
   end
-  
+
   it "creates a manifest file" do
     begin
       FileUtils.mkdir_p 'rawr-spec-temp-test/META-INF'
@@ -48,20 +48,20 @@ describe Rawr::Creator do
       FileUtils.rm_rf 'rawr-spec-temp-test'
     end
   end
-  
+
   # just see if the file is created, and has some content
   it "creates a build configuration file" do
     @creator.create_default_config_file('test_configuration.yaml', 'org.rawr.test.Main')
-    
+
     'test_configuration.yaml'.should be_existing_file
     #TODO: This is an awful test, refactor into CustomFileMatchers for better self-documenting code
     File.should be_size('test_configuration.yaml')
     FileUtils.rm 'test_configuration.yaml'
   end
-  
+
   it "creates a Java main file" do
     @creator.create_java_main_file('TestMain.java', 'org.rawr.test', 'Main')
-    
+
     'TestMain.java'.should be_existing_file
     #TODO: This is an awful test, refactor into CustomFileMatchers for better self-documenting code
     File.should be_size('TestMain.java')

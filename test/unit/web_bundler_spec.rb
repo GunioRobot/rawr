@@ -45,7 +45,7 @@ describe Rawr::WebBundler do
      <j2se version='1.5'/>
      <jar href='RawrLib.jar'/>
      <jar href="lib/java/jruby-complete.jar"/>
-     <jar href="lib/java/swing-layout-1.0.3.jar"/> 
+     <jar href="lib/java/swing-layout-1.0.3.jar"/>
      <jar href="lib/java/monkeybars-0.6.2.jar"/>
      </resources>
      <application-desc main-class='RawrLib.jar' />
@@ -59,7 +59,7 @@ describe Rawr::WebBundler do
     template_values[:project_name] = 'RawrLib'
     template_values[:codebase] = 'http://www.happycamperstudios.com/monkeybars/rawrlib'
     template_values[:vendor] = 'Happy Camper Studios'
-    template_values[:homepage_href] = '/rawrdocs.html' 
+    template_values[:homepage_href] = '/rawrdocs.html'
     template_values[:classpath_jnlp_jars] = "<jar href='lib/java/jruby-complete.jar'/>\n<jar href='lib/java/swing-layout-1.0.3.jar'/>\n<jar href='lib/java/monkeybars-0.6.2.jar'/>"
     template_values[:main_java_file] = 'RawrLib.jar'
     template_values[:description] = 'Test JNLP'
@@ -69,10 +69,10 @@ describe Rawr::WebBundler do
 
     generated_lines = generated_jnlp_dom.to_s.split( "\n").compact
     expected_lines = expected_jnlp_dom.to_s.split( "\n").compact
-    
+
     generated_lines.delete_if {|line| line.empty? }
     expected_lines.delete_if {|line| line.empty? }
-    
+
     generated_lines.each_with_index do |line, index|
       line.strip.should == expected_lines[index].strip
     end

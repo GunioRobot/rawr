@@ -15,7 +15,7 @@ module CustomFileMatchers
       "expected no existing file #{@target.inspect}"
     end
   end
-  
+
   def be_existing_file
     BeExistingFile.new
   end

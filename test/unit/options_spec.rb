@@ -93,7 +93,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), '..', 'spec_helpers'
 #    @config.project_name = 'RawrSpec'
 #
 #    Dir.stub!(:glob).and_return(['lib/java/foo1.jar', 'lib/java/foo2.jar'])
-#    
+#
 #    Rawr::Options.instance.send(:process_configuration, @config)
 #
 #    @config.classpath.should include('lib/debug/debug1.jar')

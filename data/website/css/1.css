@@ -45,7 +45,7 @@ ul#nav {
 	clear:both;
 	margin:0;
 }
-	
+
 ul#nav li {
 	float:left;
 	padding:10px 0;
@@ -92,7 +92,7 @@ ul#nav li a.active {
 	margin:1px 0 0 0;
 }
 
-#sidebar a {	
+#sidebar a {
 	color:#fff;
 }
 
@@ -187,7 +187,7 @@ a:hover {
 	color:#fff;
 }
 
-.details {	
+.details {
 	color:#ccc;
 	border:1px solid #2d2d2d;
 	background:url(../images/details.jpg) right no-repeat #313131;

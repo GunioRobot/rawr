@@ -13,7 +13,7 @@ module Rawr
       #
         dirs = []
         file_list.each do |path|
-           chunks  = path.split File::SEPARATOR    
+           chunks  = path.split File::SEPARATOR
            next if chunks.size == 0
            chunks.pop
            next if chunks.size == 0
@@ -25,7 +25,7 @@ module Rawr
         end
 
         file_list.concat dirs
-        file_list.uniq! 
+        file_list.uniq!
     end
 
   end
@@ -46,11 +46,11 @@ module Rawr
       @location_in_jar += "/" unless @location_in_jar =~ %r{(^$)|([\\/]$)}
       @dir_mapping = settings[:dir_mapping] || proc { |dir| dir }
     end
-    
+
     attr_reader :directory
-    
-    
-  
+
+
+
     def select_files_for_jar(items)
       real_files = FileList[items].pathmap(File.join(@directory, '%p'))
       selected_files = real_files.find_files_and_filter('*', [@exclude])
@@ -61,9 +61,9 @@ module Rawr
 
 
       add_dirs relative_selected_files
-      
+
       manifest_path = 'META-INF/MANIFEST.MF'
-      
+
       if relative_selected_files.include?(manifest_path)
         relative_selected_files.delete_if { |filename| filename =~ /^META-INF(\/|\/MANIFEST.MF)?$/ }
         # The JAR file specification requires META-INF and MANIFEST.MF
@@ -75,14 +75,14 @@ module Rawr
       else
         ordered_files = relative_selected_files
       end
-      
+
       return ordered_files
     end
-    
+
     def files_to_add
       return select_files_for_jar(@items.nil? ? [''] : @items)
     end
-   
+
     # This currently returns an array with the files included on the jar
     def build
       zip_file_name = @jar_file_path

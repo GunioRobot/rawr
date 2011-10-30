@@ -22,7 +22,7 @@ module Rawr
       require 'rawr/rawr_environment'
       Rawr::ensure_jruby_environment
       require 'rawr/jruby_batch_compiler'
-      
+
       options = Hash.new
       options[:target_jvm] = target_jvm
       options[:exclude] = exclude

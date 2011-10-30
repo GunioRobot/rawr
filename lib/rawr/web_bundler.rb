@@ -43,14 +43,14 @@ module Rawr
 
 
     def template_values(options)
-      values = {}  
-      values[:project_name]   = @project_name 
+      values = {}
+      values[:project_name]   = @project_name
       values[:codebase]  = options[:jnlp][:codebase]
       values[:vendor] = options[:jnlp][:vendor]
-      values[:homepage_href] = options[:jnlp][:homepage_href] 
+      values[:homepage_href] = options[:jnlp][:homepage_href]
       values[:classpath_jnlp_jars]  = classpath_jnlp_jars
       values[:main_java_file]  = options[:main_java_file]
-      values[:description]  = options[:jnlp][:description] 
+      values[:description]  = options[:jnlp][:description]
       values
     end
 
@@ -75,7 +75,7 @@ module Rawr
       @package_dir = options[:package_dir]
       @base_dir  = add_trailing_slash(options[:base_dir])
       @main_java_file = options[:main_java_file]
-      @project_jar = 
+      @project_jar =
 
       file_utils.mkdir_p web_path
 
@@ -87,10 +87,10 @@ module Rawr
           file << populate_jnlp_string_template(template_values(options))
         end
       end
-      
+
       copy_deployment_to web_path
       file_utils.cp web_start_config_file, web_path, :verbose => true
-      storepass = self_sign_pass_phrase(options) ? " -storepass #{self_sign_pass_phrase(options)} " : '' 
+      storepass = self_sign_pass_phrase(options) ? " -storepass #{self_sign_pass_phrase(options)} " : ''
       sh "jarsigner -keystore sample-keys #{storepass} #{web_path}/#{@project_name}.jar myself"
       puts "done signing project jar"
       @classpath.each {|jar| sh "jarsigner -keystore sample-keys #{storepass}  #{to_web_path(jar).strip} myself" }

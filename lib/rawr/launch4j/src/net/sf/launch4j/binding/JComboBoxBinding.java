@@ -112,7 +112,7 @@ public class JComboBoxBinding implements Binding {
 	public void markInvalid() {
 		_combo.setBackground(Binding.INVALID_COLOR);
 	}
-	
+
 	public void setEnabled(boolean enabled) {
 		_combo.setEnabled(enabled);
 	}

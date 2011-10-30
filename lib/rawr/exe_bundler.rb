@@ -4,7 +4,7 @@ require 'rawr/bundler'
 require 'rawr/platform'
 
 module Rawr
-  class ExeBundler < Bundler  
+  class ExeBundler < Bundler
     include FileUtils
 
     def link_launch4j_bin(prefix, root_path)
@@ -37,13 +37,13 @@ module Rawr
       @launcher_error_message    = options.windows_launcher_error_message
       @icon_path                 = options.windows_icon_path
       @executable_type           = options.executable_type
-      
+
       @launch4j_config_file = "#{@java_app_deploy_path}/configuration.xml"
 
       copy_deployment_to @java_app_deploy_path
       puts "Creating Windows application in #{@built_jar_path}/#{@project_name}.exe"
 
-      
+
       File.open(@launch4j_config_file, 'w') do |file|
         file << <<-CONFIG_ENDL
 <launch4jConfig>
@@ -71,7 +71,7 @@ module Rawr
   <jreVersionErr>#{@jre_version_error_message}</jreVersionErr>
   <launcherErr>#{@launcher_error_message}</launcherErr>
 </messages>
-</launch4jConfig>          
+</launch4jConfig>
 CONFIG_ENDL
       end
 
@@ -98,7 +98,7 @@ CONFIG_ENDL
 
       cmd = "java -jar \"#{file_dir_name}/launch4j/launch4j.jar\" \"#{@launch4j_config_file}\""
       warn "call: #{cmd}"
-      sh cmd 
+      sh cmd
     end
 
   end

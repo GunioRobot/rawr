@@ -7,22 +7,22 @@ module Rawr
         run_config_file << "main_ruby_file: " + options.main_ruby_file + "\n"
       end
     end
-    
+
     def self.create_manifest_file(options)
       metainf_dir_path = File.join(options.compile_dir, 'META-INF')
       manifest_path = File.join(metainf_dir_path, 'MANIFEST.MF')
-      
+
       lib_dirs = options.classpath.map {|cp| cp.gsub('../', '')}
       lib_jars = options.jars.keys.map {|key| key.to_s + ".jar"}
       libraries = lib_dirs + lib_jars + ["."]
-      
+
       File.open(manifest_path, "w+") do |manifest_file|
         manifest_file << "Manifest-Version: 1.0\n"
         manifest_file << "Class-Path: " + libraries.join("\n  ") + "\n"
         manifest_file << "Main-Class: " + options.main_java_file + "\n"
       end
     end
-    
+
     def self.create_java_main_file(java_file, java_package, java_class)
       File.open(java_file, "w+") do |java_main_file|
         java_main_file << <<-ENDL
@@ -43,12 +43,12 @@ import org.jruby.javasupport.JavaEmbedUtils;
 public class #{java_class}
 {
   public static void main(String[] args) throws Exception
-  {   
+  {
     RubyInstanceConfig config = new RubyInstanceConfig();
     config.setArgv(args);
     Ruby runtime = JavaEmbedUtils.initialize(new ArrayList(0), config);
     String mainRubyFile = "main";
-   
+
     ArrayList<String> config_data = new ArrayList<String>();
     try{
       java.io.InputStream ins = Main.class.getClassLoader().getResourceAsStream("run_configuration");
@@ -96,15 +96,15 @@ public class #{java_class}
 ENDL
       end
     end
-   
-    
+
+
     def self.w msg
       warn(msg) if  ENV['WORDY']
     end
 
     def self.create_default_config_file config_path, java_class, project_name=nil
       w "Creating default config file in '#{config_path}'  with project_name #{project_name} ..."
-      
+
       Rawr::Configuration.project_name = project_name if project_name
 
       w "Project name is #{Rawr::Configuration.project_name}"

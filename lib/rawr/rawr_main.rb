@@ -22,7 +22,7 @@ module Rawr
         @@errors << "You must pass a command.  Right now, the only one you can use is 'install'."
       end
 
-      @@errors.empty? 
+      @@errors.empty?
     end
 
     def self.show_version current_options
@@ -41,7 +41,7 @@ module Rawr
       # Might have additonal args in current_options[:command]
 
       # First handle some psuedo commands
-      if current_options[:show_version] 
+      if current_options[:show_version]
         show_version current_options
         exit
       end
@@ -63,7 +63,7 @@ module Rawr
 
     def self.handle_install current_options
       adjust current_options
-      
+
       java_class = current_options[:class].split(".")
       java_class = current_options[:class].split(".")
       java_class = current_options[:class].split(".")
@@ -80,17 +80,17 @@ module Rawr
 
       w "The choice to download a JRuby jar is #{download_jruby}, as determined by :no_download = #{current_options[:no_download].inspect} and   :no_jar = #{current_options[:no_jar].inspect}"
 
-      install_dir = current_options[:command].empty? ? Dir.pwd : current_options[:command].join(' ') 
-      
+      install_dir = current_options[:command].empty? ? Dir.pwd : current_options[:command].join(' ')
+
       current_options['project_name'] =  if install_dir == '.'
                                                Dir.pwd.split(File::SEPARATOR).last
                                              else
                                                install_dir.split(File::SEPARATOR).last
                                              end
-      
+
       w "install_dir is '#{install_dir}'"
-     
-     w "current_options['project_name']  = #{current_options['project_name'] 
+
+     w "current_options['project_name']  = #{current_options['project_name']
      }"
       FileUtils.mkdir_p install_dir unless install_dir == '.'
 
@@ -130,7 +130,7 @@ module Rawr
           ::Rawr::JRubyRelease.get 'stable', 'lib/java'
 
         else
-          unless current_options[:no_jar] 
+          unless current_options[:no_jar]
             if current_options[:local_jruby_jar].to_s.strip.empty?
               warn "The rawr configuration indicates copying over a local jruby-complete.jar, but there is no file path defined for this."
               warn "Your 'install' configuration is:\n#{current_options.pretty_inspect}"
@@ -144,9 +144,9 @@ module Rawr
                 FileUtils.cp current_options[:local_jruby_jar], copy_to
               end
             end # current_options[:local_jruby_jar].to_s.strip.empty?
-          else 
+          else
             warn "Based on the given configuration, no jruby-complete.jar file will be added to the project."
-          end  # current_options[:no_jar] 
+          end  # current_options[:no_jar]
         end # if download_jruby
       end # install_dr do
       warn "All done! "

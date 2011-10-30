@@ -2,7 +2,7 @@ require 'fileutils'
 
 module Rawr
   class Bundler
-    
+
 #    def add_trailing_slash path
 #      raise "Nil passed to add_trailing_slash." if path.nil?
 #      path << '/' unless path =~ /\/$/
@@ -21,7 +21,7 @@ module Rawr
 #
 #    private
 #
-#    def relative_files_without_repo 
+#    def relative_files_without_repo
 #      files_without_repo.map{|file| file.sub(add_trailing_slash(@base_dir), '')}
 #    end
 #

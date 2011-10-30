@@ -37,7 +37,7 @@ task :default => 'spec'
 
 task :update_version_readme do
   readme = IO.readlines( 'README.md')
-  File.open( 'README.md', 'w' ) do |f| 
+  File.open( 'README.md', 'w' ) do |f|
     f.puts "Rawr #{Rawr::VERSION}\n"
     readme.shift
     f.puts readme
